@@ -14,6 +14,9 @@ module.exports = {
       js: 'never',
       vue: 'never',
     }],
+    'import/no-extraneous-dependencies': ['error', { devDependencies: true }],
+    'no-new': 0,
+    'no-mixed-operators': 0,
   },
   globals: {},
 };
