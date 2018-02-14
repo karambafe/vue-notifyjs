@@ -20,7 +20,7 @@
   "scripts": {
     "test": "echo 'no tests!' && npm run lint",
     "prepublish": "npm run build",
-    "lint": "xo",
+    "lint": "eslint --ext .js,.vue --ignore-path .gitignore .",
     "build": "bili --format cjs --format umd --compress --banner --js babel && node-sass themes/ -o themes/",
     "build:example": "poi build",
     "dev": "poi --port 5000",
@@ -30,24 +30,21 @@
   "license": "MIT",
   "dependencies": {},
   "devDependencies": {
+    "babel-eslint": "^8.2.1",
     "babel-preset-vue-app": "^2.0.0",
     "bili": "^0.16.0-rc.2",
-    "bootstrap": "^3.3.7",
-    "eslint-config-rem": "^3.0.0",
+    "eslint": "^4.17.0",
+    "eslint-config-airbnb": "^16.1.0",
+    "eslint-config-airbnb-base": "^12.1.0",
+    "eslint-plugin-html": "^4.0.2",
+    "eslint-plugin-import": "^2.8.0",
     "gh-pages": "^1.0.0",
     "node-sass": "^4.7.2",
     "poi": "^9.0.2",
     "rollup-plugin-babel": "^2.7.1",
     "sass-loader": "^6.0.6",
     "vue": "^2.3.4",
-    "vue-github-badge": "^1.0.0",
-    "xo": "^0.18.0"
-  },
-  "xo": {
-    "extends": "rem/prettier",
-    "ignores": [
-      "example/**"
-    ]
+    "vue-github-badge": "^1.0.0"
   },
   "babel": {
     "presets": [
