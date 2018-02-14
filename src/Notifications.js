@@ -1,61 +1,63 @@
-import Notification from './Notification.js'
+import Notification from './Notification'; // eslint-disable-line no-unused-vars
+
 export default {
-    props: {
-        transitionName: {
-            type: String,
-            default: 'list'
-        },
-        transitionMode: {
-            type: String,
-            default: 'in-out'
-        },
-        overlap: {
-            type: Boolean,
-            default: false
-        }
+  props: {
+    transitionName: {
+      type: String,
+      default: 'list',
     },
-    data () {
-        return {
-            notifications: this.$notifications.state
-        }
+    transitionMode: {
+      type: String,
+      default: 'in-out',
     },
-    methods: {
-        removeNotification (timestamp) {
-            this.$notifications.removeNotification(timestamp)
-        }
+    overlap: {
+      type: Boolean,
+      default: false,
     },
-    created(){
-        this.$notifications.settings.overlap = this.overlap
+  },
+  data() {
+    return {
+      notifications: this.$notifications.state,
+    };
+  },
+  methods: {
+    removeNotification(timestamp) {
+      this.$notifications.removeNotification(timestamp);
     },
-    render(){
-        const renderedNotifications = this.$notifications.state.map((notification, index) => {
-                return <Notification
-                    horizontalAlign={notification.horizontalAlign}
-                    verticalAlign={notification.verticalAlign}
-                    icon={notification.icon}
-                    message={notification.message}
-                    title={notification.title}
-                    timeout={notification.timeout}
-                    type={notification.type}
-                    component={notification.component}
-                    timestamp={notification.timestamp}
-                    closeOnClick={notification.closeOnClick}
-                    clickHandler={notification.onClick}
-                    showClose={notification.showClose}
-                    key={notification.timestamp.getTime()} onClose={this.removeNotification}/>
-            }
-        )
-        return (
-            <div class="notifications vue-notifyjs">
-                <transition-group name={this.transitionName} mode={this.transitionMode}>
-                    {renderedNotifications}
-                </transition-group>
-            </div>
-        )
+  },
+  created() {
+    this.$notifications.settings.overlap = this.overlap;
+  },
+  render() {
+    const renderedNotifications = this.$notifications.state.map(notification => (
+      <Notification
+        horizontalAlign={notification.horizontalAlign}
+        verticalAlign={notification.verticalAlign}
+        icon={notification.icon}
+        message={notification.message}
+        title={notification.title}
+        timeout={notification.timeout}
+        type={notification.type}
+        component={notification.component}
+        timestamp={notification.timestamp}
+        closeOnClick={notification.closeOnClick}
+        clickHandler={notification.onClick}
+        showClose={notification.showClose}
+        key={notification.timestamp.getTime()}
+        onClose={this.removeNotification}
+      />
+    ));
+    return (
+      <div class="notifications vue-notifyjs">
+        <transition-group name={this.transitionName} mode={this.transitionMode}>
+          {renderedNotifications}
+        </transition-group>
+      </div>
+    );
+  },
+  watch: {
+    overlap(newVal) {
+      this.$notifications.settings.overlap = newVal;
     },
-    watch: {
-        overlap: function (newVal) {
-            this.$notifications.settings.overlap = newVal
-        }
-    }
-}
+  },
+};
