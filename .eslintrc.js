@@ -14,9 +14,11 @@ module.exports = {
       js: 'never',
       vue: 'never',
     }],
+    'max-len': ['error', { 'code': 120 }],
     'import/no-extraneous-dependencies': ['error', { devDependencies: true }],
     'no-new': 0,
     'no-mixed-operators': 0,
+    'no-param-reassign': 0,
   },
   globals: {},
 };
